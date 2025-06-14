@@ -2,9 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Models\Field;
+use App\Models\Form;
+use App\Models\Section;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,6 +22,18 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@filamentphp.com',
+        ]);
+
+        Form::create([
+            'name' => 'form name',
+        ]);
+        Section::create([
+            'name' => 'section name',
+            'form_id' => 1,
+        ]);
+        Field::create([
+            'name' => 'field name',
+            'section_id' => 1,
         ]);
     }
 }
