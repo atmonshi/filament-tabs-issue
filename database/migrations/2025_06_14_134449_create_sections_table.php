@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('sections', function (Blueprint $table) {
             $table->id();
             $table->foreignId('form_id')->constrained('forms');
-            $table->text('name')->nullable();
+            $table->string('name')->nullable();
             $table->timestamps();
         });
     }
