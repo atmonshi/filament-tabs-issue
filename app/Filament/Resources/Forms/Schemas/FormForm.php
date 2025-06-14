@@ -2,12 +2,9 @@
 
 namespace App\Filament\Resources\Forms\Schemas;
 
-use Filament\Actions\Action;
 use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\Textarea;
-use Filament\Schemas\Components\Utilities\Get;
+use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
-use LaraZeus\Bolt\Facades\Bolt;
 
 class FormForm
 {
@@ -15,18 +12,26 @@ class FormForm
     {
         return $schema
             ->components([
-                Textarea::make('name')
+                TextInput::make('name')
                     ->required()
                     ->columnSpanFull(),
 
                 Repeater::make('sections')
                     ->hiddenLabel()
                     ->schema([
-                        Textarea::make('name')
+                        TextInput::make('name'),
+
+                        Repeater::make('fields')
+                            ->hiddenLabel()
+                            ->grid()
+                            ->schema([
+                                TextInput::make('name')
+                            ])
+                            ->relationship()
+                            ->columnSpanFull(),
                     ])
                     ->relationship()
-                    ->columnSpanFull()
-                    ->grid(3),
+                    ->columnSpanFull(),
             ]);
     }
 }
